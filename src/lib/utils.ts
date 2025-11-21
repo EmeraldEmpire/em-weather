@@ -23,3 +23,49 @@ export function formatDate(date: Date) {
 export function formatToWeekday(date: Date) {
   return new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(date)
 }
+
+export const removeDecimal = (num: number) => Math.trunc(num)
+
+export function unitConverter(unit: string, value: number) {
+  let convertedVal: number
+
+  switch (unit) {
+    case 'fahrenheit':
+      convertedVal = (value * 9) / 5 + 32
+      break
+
+    case 'mph':
+      convertedVal = value * 0.621371
+      break
+
+    case 'in':
+      convertedVal = value * 0.03937
+      break
+
+    default:
+      convertedVal = value
+  }
+
+  return removeDecimal(convertedVal)
+
+  // celsiusToFahrenheit: function (celsius: number) {
+  //   return (celsius * 9) / 5 + 32
+  // },
+
+  // kphToMph: function (kph: number) {
+  //   return kph * 0.621371
+  // },
+
+  // mmToInc: function (mm: number) {
+  //   return mm * 0.03937
+  // },
+}
+
+export const weatherUnits = {
+  celsius: '°C',
+  fahrenheit: '°F',
+  kph: 'km/h',
+  mph: 'mph',
+  mm: 'mm',
+  in: 'in',
+}

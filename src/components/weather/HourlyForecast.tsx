@@ -2,9 +2,11 @@ import { use } from 'react'
 import { WeatherContext } from '@/contexts/WeatherProvider'
 import HourlyForecastSelectDate from './HourlyForecastSelectDate'
 import { WEATHER_OBJECT } from '@/constants'
+import { unitConverter } from '@/lib/utils'
 
 const HourlyForecast = () => {
-  const { filterHourlyForecastByDate } = use(WeatherContext)
+  const { filterHourlyForecastByDate, tempUnit } = use(WeatherContext)
+
   return (
     <>
       <div className="flex justify-between items-center mb-3">
@@ -36,7 +38,7 @@ const HourlyForecast = () => {
                 {formattedTime}
               </div>
               <span className="font-light text-neutral-50 text-[16px]">
-                {Math.trunc(Number(data.temperature))}°
+                {unitConverter(tempUnit, data.temperature)}°
               </span>
             </div>
           )

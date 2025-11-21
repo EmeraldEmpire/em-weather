@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -9,11 +8,17 @@ import {
 } from '@/components/ui/dropdown-menu'
 import iconDropdown from '@/assets/images/icon-dropdown.svg'
 import iconUnits from '@/assets/images/icon-units.svg'
+import { useWeather } from '@/contexts/WeatherProvider'
 
 const DropdownButton = () => {
-  const [windUnit, setWindUnit] = useState('km/h')
-  const [tempUnit, setTempUnit] = useState('celsius')
-  const [precipitationUnit, setPrecipitationUnit] = useState('mm')
+  const {
+    tempUnit,
+    windUnit,
+    precipitationUnit,
+    setWindUnit,
+    setTempUnit,
+    setPrecipitationUnit,
+  } = useWeather()
 
   return (
     <DropdownMenu>
@@ -78,19 +83,19 @@ const DropdownButton = () => {
             </DropdownMenuLabel>
             <label
               className={`radio-item flex justify-between py-2 px-2 rounded-md ${
-                windUnit === 'km/h' && 'bg-neutral-700'
+                windUnit === 'kph' && 'bg-neutral-700'
               }`}
             >
               <input
                 type="radio"
                 name="wind"
                 className="radio-input hidden"
-                value="km/h"
+                value="kph"
                 onChange={(e) => setWindUnit(e.target.value)}
               />
 
-              <p className="radio-text">km/h </p>
-              {windUnit === 'km/h' && <span>✓</span>}
+              <p className="radio-text">km/h</p>
+              {windUnit === 'kph' && <span>✓</span>}
             </label>
             <label
               className={`radio-item flex justify-between py-2 px-2 rounded-md ${

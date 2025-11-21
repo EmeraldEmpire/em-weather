@@ -1,9 +1,10 @@
 import { use } from 'react'
 import { WeatherContext } from '@/contexts/WeatherProvider'
 import { WEATHER_OBJECT } from '@/constants'
+import { unitConverter } from '@/lib/utils'
 
 const DailyForecast = () => {
-  const { weatherData } = use(WeatherContext)
+  const { weatherData, tempUnit } = use(WeatherContext)
 
   return (
     <div>
@@ -29,10 +30,18 @@ const DailyForecast = () => {
               />
               <p className="flex justify-between w-full font-light text-neutral-50 text-[16px]">
                 <span>
-                  {Math.trunc(weatherData.daily.temperature_2m_max[i])}°
+                  {unitConverter(
+                    tempUnit,
+                    weatherData.daily.temperature_2m_max[i]
+                  )}
+                  °
                 </span>
                 <span className="text-neutral-200">
-                  {Math.trunc(weatherData.daily.temperature_2m_min[i])}°
+                  {unitConverter(
+                    tempUnit,
+                    weatherData.daily.temperature_2m_min[i]
+                  )}
+                  °
                 </span>
               </p>
             </div>

@@ -1,8 +1,10 @@
 import { use } from 'react'
 import { WeatherContext } from '@/contexts/WeatherProvider'
-import { formatDate } from '@/lib/utils'
+import { formatDate, unitConverter, weatherUnits } from '@/lib/utils'
 import { WEATHER_OBJECT } from '@/constants'
 import { useLocations } from '@/contexts/LocationsProvider'
+
+type UnitKey = keyof typeof weatherUnits
 
 const CurrentForecast = () => {
   const weatherContext = use<any>(WeatherContext)
@@ -16,6 +18,13 @@ const CurrentForecast = () => {
     time,
     weather_code,
   } = weatherContext.weatherData.current
+
+  const {
+    tempUnit,
+    windUnit,
+    precipitationUnit,
+  }: { tempUnit: UnitKey; windUnit: UnitKey; precipitationUnit: UnitKey } =
+    weatherContext
 
   const { currentLocation } = useLocations()
 
@@ -41,7 +50,7 @@ const CurrentForecast = () => {
               height={128}
             />
             <p className="text-8xl italic font-[550]">
-              {Math.trunc(temperature_2m)}°
+              {unitConverter(tempUnit, temperature_2m)}°
             </p>
           </div>
         </div>
@@ -51,7 +60,7 @@ const CurrentForecast = () => {
         <div className="flex col-span-1 flex-col gap-4 rounded-xl bg-neutral-800 px-6 py-4 border-1 border-neutral-600">
           <p className="text-neutral-200">Feels Like</p>
           <p className="font-extralight text-neutral-50 text-3xl">
-            {Math.trunc(apparent_temperature)}°
+            {unitConverter(tempUnit, apparent_temperature)}°
           </p>
         </div>
         <div className="flex col-span-1 flex-col gap-4 rounded-xl bg-neutral-800 px-6 py-4 border-1 border-neutral-600">
@@ -60,15 +69,17 @@ const CurrentForecast = () => {
         </div>
         <div className="flex col-span-1 flex-col gap-4 rounded-xl bg-neutral-800 px-6 py-4 border-1 border-neutral-600">
           <p className="text-neutral-200">Wind</p>
-          <p className="font-extralight text-neutral-50 text-3xl">{`${Math.trunc(
+          <p className="font-extralight text-neutral-50 text-3xl">{`${unitConverter(
+            windUnit,
             wind_speed_10m
-          )} km/h`}</p>
+          )} ${weatherUnits[windUnit]}`}</p>
         </div>
         <div className="flex col-span-1 flex-col gap-4 rounded-xl bg-neutral-800 px-6 py-4 border-1 border-neutral-600">
           <p className="text-neutral-200">Precipitation</p>
-          <p className="font-extralight text-neutral-50 text-3xl">{`${Math.trunc(
+          <p className="font-extralight text-neutral-50 text-3xl">{`${unitConverter(
+            precipitationUnit,
             precipitation
-          )} mm`}</p>
+          )} ${weatherUnits[precipitationUnit]}`}</p>
         </div>
       </div>
     </>

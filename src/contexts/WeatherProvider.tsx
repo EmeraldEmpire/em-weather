@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, useContext } from 'react'
 import { getWeatherData } from '@/lib/api/open-meteo'
 import { useLocations } from './LocationsProvider'
 
@@ -13,6 +13,9 @@ const WeatherProvider = ({ children }: WeatherProviderProps) => {
   const [weatherData, setWeatherData] = useState<any>()
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [filterDate, setFilterDate] = useState<any>('')
+  const [windUnit, setWindUnit] = useState('kph')
+  const [tempUnit, setTempUnit] = useState('celsius')
+  const [precipitationUnit, setPrecipitationUnit] = useState('mm')
 
   const mapHourlyForecast = () => {
     return weatherData.hourly.time.map((dataItem: Date, i: number) => {
@@ -56,6 +59,8 @@ const WeatherProvider = ({ children }: WeatherProviderProps) => {
       setWeatherData(data)
       setFilterDate(data.daily.time[0])
 
+      console.log(data)
+
       setIsLoading(false)
     } catch (err) {
       console.log(err)
@@ -71,6 +76,12 @@ const WeatherProvider = ({ children }: WeatherProviderProps) => {
     weatherData,
     isLoading,
     filterDate,
+    windUnit,
+    tempUnit,
+    precipitationUnit,
+    setWindUnit,
+    setTempUnit,
+    setPrecipitationUnit,
     setFilterDate,
     fetchWeather,
     filterHourlyForecastByDate,
@@ -79,6 +90,10 @@ const WeatherProvider = ({ children }: WeatherProviderProps) => {
   return (
     <WeatherContext.Provider value={value}>{children}</WeatherContext.Provider>
   )
+}
+
+export const useWeather = () => {
+  return useContext(WeatherContext)
 }
 
 export default WeatherProvider
