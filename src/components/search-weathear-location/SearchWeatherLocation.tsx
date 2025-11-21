@@ -1,4 +1,4 @@
-import iconSearch from '@/assets/images/icon-search.svg'
+import iconSearch from '/assets/images/icon-search.svg'
 import { Button } from '../ui/button'
 import SearchResults from './SearchResults'
 import { useLocations } from '@/contexts/LocationsProvider'

@@ -6,8 +6,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import iconDropdown from '@/assets/images/icon-dropdown.svg'
-import iconUnits from '@/assets/images/icon-units.svg'
+import iconDropdown from '/assets/images/icon-dropdown.svg'
+import iconUnits from '/assets/images/icon-units.svg'
 import { useWeather } from '@/contexts/WeatherProvider'
 
 const DropdownButton = () => {

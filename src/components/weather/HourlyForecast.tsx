@@ -28,7 +28,7 @@ const HourlyForecast = () => {
             >
               <div className="flex items-center gap-1 text-xl">
                 <img
-                  src={`src/assets/images/${
+                  src={`/assets/images/${
                     WEATHER_OBJECT[data.weather_code].day.image
                   }`}
                   alt="Sunny"

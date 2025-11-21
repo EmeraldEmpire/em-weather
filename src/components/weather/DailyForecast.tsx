@@ -21,7 +21,7 @@ const DailyForecast = () => {
             >
               <p className="text-neutral-50 text-center">{now}</p>
               <img
-                src={`src/assets/images/${
+                src={`/assets/images/${
                   WEATHER_OBJECT[weatherData.daily.weather_code[i]].day.image
                 }`}
                 alt="Sunny"

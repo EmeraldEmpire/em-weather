@@ -30,7 +30,7 @@ const CurrentForecast = () => {
 
   return (
     <>
-      <div className="bg-[url('/src/assets/images/bg-today-large.svg')] bg-center rounded-3xl px-6 py-20">
+      <div className="bg-[url('/assets/images/bg-today-large.svg')] bg-center rounded-3xl px-6 py-20">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-1.5">
             <p className="text-3xl font-[550]">
@@ -44,7 +44,7 @@ const CurrentForecast = () => {
           </div>
           <div className="flex items-center gap-4">
             <img
-              src={`src/assets/images/${WEATHER_OBJECT[weather_code].day.image}`}
+              src={`/assets/images/${WEATHER_OBJECT[weather_code].day.image}`}
               alt="Sunny"
               width={128}
               height={128}
