@@ -1,6 +1,6 @@
 import { use } from 'react'
 import { WeatherContext } from '@/contexts/WeatherProvider'
-import { WEATHER_OBJECT } from '@/constants'
+import { APP_URL, WEATHER_OBJECT } from '@/constants'
 import { unitConverter } from '@/lib/utils'
 
 const DailyForecast = () => {
@@ -21,7 +21,7 @@ const DailyForecast = () => {
             >
               <p className="text-neutral-50 text-center">{now}</p>
               <img
-                src={`/assets/images/${
+                src={`${APP_URL}/assets/images/${
                   WEATHER_OBJECT[weatherData.daily.weather_code[i]].day.image
                 }`}
                 alt="Sunny"

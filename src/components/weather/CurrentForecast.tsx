@@ -3,6 +3,7 @@ import { WeatherContext } from '@/contexts/WeatherProvider'
 import { formatDate, unitConverter, weatherUnits } from '@/lib/utils'
 import { WEATHER_OBJECT } from '@/constants'
 import { useLocations } from '@/contexts/LocationsProvider'
+import { APP_URL } from '@/constants'
 
 type UnitKey = keyof typeof weatherUnits
 
@@ -44,7 +45,7 @@ const CurrentForecast = () => {
           </div>
           <div className="flex items-center gap-4">
             <img
-              src={`/assets/images/${WEATHER_OBJECT[weather_code].day.image}`}
+              src={`${APP_URL}/assets/images/${WEATHER_OBJECT[weather_code].day.image}`}
               alt="Sunny"
               width={128}
               height={128}

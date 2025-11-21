@@ -1,7 +1,7 @@
 import { use } from 'react'
 import { WeatherContext } from '@/contexts/WeatherProvider'
 import HourlyForecastSelectDate from './HourlyForecastSelectDate'
-import { WEATHER_OBJECT } from '@/constants'
+import { APP_URL, WEATHER_OBJECT } from '@/constants'
 import { unitConverter } from '@/lib/utils'
 
 const HourlyForecast = () => {
@@ -28,7 +28,7 @@ const HourlyForecast = () => {
             >
               <div className="flex items-center gap-1 text-xl">
                 <img
-                  src={`/assets/images/${
+                  src={`${APP_URL}/assets/images/${
                     WEATHER_OBJECT[data.weather_code].day.image
                   }`}
                   alt="Sunny"

@@ -280,3 +280,6 @@ export const WEATHER_OBJECT: any = {
     },
   },
 }
+
+export const APP_URL =
+  import.meta.env.VITE_APP_URL || 'https://emeraldempire.github.io/em-weather'
